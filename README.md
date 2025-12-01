@@ -1,5 +1,4 @@
 # AI Playwright Demo
-
 Automated test generation and execution using AI-powered Playwright testing framework.
 
 ## Features
