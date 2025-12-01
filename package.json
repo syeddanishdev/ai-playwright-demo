@@ -1,0 +1,36 @@
+{
+  "name": "ai-playwright-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:master": "playwright test tests/e2e/master.spec.js",
+    "test:e2e": "playwright test tests/e2e/",
+    "test:homepage": "playwright test tests/e2e/homepage.spec.js",
+    "test:chromium": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:webkit": "playwright test --project=webkit",
+    "test:debug": "playwright test --debug",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "test:ci": "playwright test --project=chromium --reporter=json,junit,html",
+    "report": "playwright show-report",
+    "inspect": "playwright test scripts/inspect-page.js",
+    "generate-test": "node scripts/ai-gen/generate-test.js",
+    "generate-test:validate": "node scripts/ai-gen/genAIUtils.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "dotenv": "^17.2.3",
+    "openai": "^6.9.1",
+    "playwright": "^1.57.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.57.0"
+  }
+}
