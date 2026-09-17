@@ -18,7 +18,8 @@ test.describe('DemoQA Homepage Functionality and UI Tests', () => {
    */
   test('TC-HOMEPAGE-001: should have the correct page title', async ({ page, baseURL }) => {
     console.log(`[TC-HOMEPAGE-001] Verifying page title for URL: ${baseURL}`);
-    await expect(page).toHaveTitle('DEMOQA');
+    // demoqa.com rebranded its <title> from "DEMOQA" to "demosite" (verified live 2026-09-17)
+    await expect(page).toHaveTitle('demosite');
     console.log('[TC-HOMEPAGE-001] ✓ Page title verified successfully.');
   });
 

@@ -26,7 +26,7 @@ test.describe('DemoQA Book Store Tests', () => {
     await searchBox.fill('Git');
     await page.waitForTimeout(500);
 
-    const results = page.locator('.rt-tbody .rt-tr-group');
+    const results = page.locator('table tbody tr');
     await expect(results.first()).toBeVisible();
     console.log('[TC-BOOKSTORE-001] ✓ Book search test passed.');
   });
@@ -42,11 +42,9 @@ test.describe('DemoQA Book Store Tests', () => {
       await booksLink.first().click().catch(() => { });
     }
 
-    const bookRows = page.locator('.rt-tbody .rt-tr-group');
-    if (await bookRows.count() > 0) {
-      await expect(bookRows.first()).toBeVisible();
-      console.log('[TC-BOOKSTORE-002] ✓ Book list display test passed.');
-    }
+    const bookRows = page.locator('table tbody tr');
+    await expect(bookRows.first()).toBeVisible();
+    console.log('[TC-BOOKSTORE-002] ✓ Book list display test passed.');
   });
 
   /**
@@ -60,19 +58,10 @@ test.describe('DemoQA Book Store Tests', () => {
       await booksLink.first().click().catch(() => { });
     }
 
-    const firstBook = page.locator('.rt-tbody .rt-tr-group:first-child a');
-    if (await firstBook.count() > 0) {
-      await firstBook.click();
-      // Wait for navigation with timeout, but don't fail if URL pattern doesn't match exactly
-      await page.waitForTimeout(2000).catch(() => { });
-      const currentURL = page.url();
-      if (currentURL.includes('book') || currentURL.includes('detail')) {
-        console.log('[TC-BOOKSTORE-003] ✓ Book detail page test passed.');
-      } else {
-        // Still pass if we successfully navigated
-        console.log('[TC-BOOKSTORE-003] ✓ Book click navigation test passed.');
-      }
-    }
+    const firstBook = page.locator('table tbody tr:first-child a');
+    await firstBook.click();
+    await expect(page).toHaveURL(/book/);
+    console.log('[TC-BOOKSTORE-003] ✓ Book detail page test passed.');
   });
 
   /**
